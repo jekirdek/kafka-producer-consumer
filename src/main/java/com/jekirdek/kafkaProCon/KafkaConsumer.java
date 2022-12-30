@@ -10,8 +10,13 @@ public class KafkaConsumer {
 	
 	Logger logger = Logger.getLogger(KafkaConsumer.class.getName());
 
-    @KafkaListener(topics = "my-topic")
-    public void processMessage(String message) {
-    	logger.info("Received message: " + message);
+    @KafkaListener(topics = "my-topic", groupId = "group1")
+    public void processMessage1(String message) {
+    	logger.info("Received group1 : " + message);
+    }
+    
+    @KafkaListener(topics = "my-topic", groupId = "group2")
+    public void processMessage2(String message) {
+    	logger.info("Received group2 : " + message);
     }
 }
